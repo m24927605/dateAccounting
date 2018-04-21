@@ -16,8 +16,11 @@ module.exports = (app, firebaseRef) => {
     });
     app.post('/linebot', (req, res) => {
         try {
-            let data=req.body.events[0].message;
-            console.log(JSON.stringify(data));
+            if(req.body.events[0].message.type==='text'){
+                let data=req.body.events[0].message.text;
+                console.log(data);
+                firebaseRef.set({fromLine:data});
+            }
         } catch (err) {
             res.status(500).json(errorMessage.routerSend("linebot", err));
         }
