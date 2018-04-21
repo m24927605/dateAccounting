@@ -16,7 +16,12 @@ module.exports = (app, linebotParser, firebaseRef) => {
     });
     app.post('/linebot', (req, res) => {
         try {
-            console.log(req.body);
+            linebotParser.on('message', function (event) {
+                if (event.message.type = 'text') {
+                    let msg = event.message.text;
+                    firebaseRef.set('testmsg', msg);
+                }
+            });
         } catch (err) {
             res.status(500).json(errorMessage.routerSend("linebot", err));
         }
