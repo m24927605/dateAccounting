@@ -12,7 +12,7 @@ module.exports = (app) => {
     });
     app.post('/linebot', (req, res) => {
         try {
-            res.json({linebot:'test'});
+            console.log(req.body);
         } catch (err) {
             res.status(500).json(errorMessage.routerSend("Manager", err));
         }
