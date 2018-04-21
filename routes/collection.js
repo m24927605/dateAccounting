@@ -5,8 +5,8 @@ const routes = [
   require('./linebot')
 ];
 
-module.exports = function router(app,linebotParser) {
+module.exports = function router(app,linebotParser,firebaseRef) {
   return routes.forEach((route) => {
-    route(app,linebotParser);
+    route(app,linebotParser,firebaseRef);
   });
 };

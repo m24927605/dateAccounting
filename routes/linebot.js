@@ -1,11 +1,14 @@
 'use strict';
 
-const errorMessage=require('../services/error')();
+const errorMessage = require('../services/error')();
 
-module.exports = (app) => {
+
+module.exports = (app, linebotParser, firebaseRef) => {
     app.get('/linebot', (req, res) => {
         try {
-            res.json({linebot:'test'});
+            ref.once("value", function (snapshot) {
+                console.log(snapshot.val());
+            });
         } catch (err) {
             res.status(500).json(errorMessage.routerSend("Manager", err));
         }

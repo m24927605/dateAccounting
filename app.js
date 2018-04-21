@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const linebot = require('linebot');
 const router = require('./routes/collection');
+const firebase = require("firebase");
 
 const bot = linebot({
   channelId: process.env.CHANNEL_ID,
@@ -13,6 +14,19 @@ const bot = linebot({
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
 });
 const linebotParser = bot.parser();
+
+const config = {
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  databaseURL: process.env.DATABASE_URL,
+  storageBucket: process.env.STORAGE_BUCKET
+ };
+  
+ firebase.initializeApp(config);
+  
+ const db = firebase.database();
+  
+ const firebaseRef = db.ref("/");
 
 const app = express();
 
@@ -29,7 +43,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-router(app,linebotParser);
+router(app,linebotParser,firebaseRef);
 
 
 // catch 404 and forward to error handler
