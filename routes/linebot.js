@@ -19,7 +19,7 @@ module.exports = (app, firebaseRef) => {
             if(req.body.events[0].message.type==='text'){
                 let data=req.body.events[0].message.text;
                 console.log(data);
-                firebaseRef.set({fromLine:data});
+                firebaseRef.update({fromLine:data});
             }
         } catch (err) {
             res.status(500).json(errorMessage.routerSend("linebot", err));
