@@ -17,11 +17,7 @@ module.exports = (app, linebotParser, firebaseRef) => {
     app.post('/linebot', (req, res) => {
         try {
             linebotParser.on('message', function (event) {
-                if (event.message.type = 'text') {
-                    let msg = event.message.text;
-                    console.log('line msg',msg);
-                    firebaseRef.set({"FromLine": msg});
-                }
+               console.log('line event',event);
             });
         } catch (err) {
             res.status(500).json(errorMessage.routerSend("linebot", err));
