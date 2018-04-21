@@ -132,9 +132,9 @@
         "CSmessage": "Router發生錯誤，請聯絡資訊人員",
         "errorDetail": ""
       },
-      "Manager": {
+      "linebot": {
         "errCode": 404,
-        "ITmessage": "Manager router try catch error",
+        "ITmessage": "linebot router try catch error",
         "CSmessage": "Router發生錯誤，請聯絡資訊人員",
         "errorDetail": ""
       }
