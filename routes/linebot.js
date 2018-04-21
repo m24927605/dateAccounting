@@ -19,6 +19,7 @@ module.exports = (app, linebotParser, firebaseRef) => {
             linebotParser.on('message', function (event) {
                 if (event.message.type = 'text') {
                     let msg = event.message.text;
+                    console.log('line msg',msg);
                     firebaseRef.set({"FromLine": msg});
                 }
             });
