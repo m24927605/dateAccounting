@@ -3,7 +3,7 @@
 const errorMessage = require('../services/error')();
 
 
-module.exports = (app, linebotParser, firebaseRef) => {
+module.exports = (app, firebaseRef) => {
     app.get('/linebot', (req, res) => {
         try {
             firebaseRef.once("value", function (snapshot) {
@@ -16,9 +16,8 @@ module.exports = (app, linebotParser, firebaseRef) => {
     });
     app.post('/linebot', (req, res) => {
         try {
-            linebotParser.on('message', function (event) {
-               console.log('line event',event);
-            });
+            let data=req.body;
+            console.log(data);
         } catch (err) {
             res.status(500).json(errorMessage.routerSend("linebot", err));
         }
